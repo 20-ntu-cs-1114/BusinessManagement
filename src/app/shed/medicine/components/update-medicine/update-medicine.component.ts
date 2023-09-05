@@ -24,20 +24,37 @@ export class UpdateMedicineComponent {
     private snackBar: SnackbarService,
     private medDistributer: MedicineDistributerService,
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public dialogData: Medicine
+    @Inject(MAT_DIALOG_DATA) public medicine: Medicine
   ) {
+    this.setValues();
     this.medDistributersList = this.medDistributer.getDistributers();
+  }
+  setValues() {
+    this.updateMedicineForm.controls['name'].setValue(this.medicine.name);
+    this.updateMedicineForm.controls['company'].setValue(this.medicine.company);
+    this.updateMedicineForm.controls['distributer'].setValue(
+      this.medicine.distributer
+    );
+    this.updateMedicineForm.controls['price'].setValue(this.medicine.price);
+    this.updateMedicineForm.controls['quantity'].setValue(
+      this.medicine.quantity
+    );
+    this.updateMedicineForm.controls['type'].setValue(this.medicine.type);
   }
   types = ['kg', 'litter'];
   updateMedicineForm = this.formBuilder.group({
     name: ['', [Validators.required, Validators.maxLength(50)]],
-    price: [null, [Validators.required]],
+    price: [0, [Validators.required]],
     company: ['', [Validators.required, Validators.maxLength(50)]],
     distributer: ['', [Validators.required, Validators.maxLength(50)]],
-    quantity: [NonNullableFormBuilder, [Validators.required]],
+    quantity: [0, [Validators.required]],
     type: ['', [Validators.required, Validators.maxLength(10)]],
   });
   updateMedicine(data: any) {
     console.log(data);
+    const id = this.medicine.id;
+    this.medicineService.updateMedicine(data,id).subscribe(res=>{
+      console.log(res)
+    })
   }
 }

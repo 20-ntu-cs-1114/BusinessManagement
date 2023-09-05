@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { AddMedicineComponent } from './components/add-medicine/add-medicine.component';
 import { unsaveChangesGuard } from './guards/unsave-changes.guard';
 import { DeleteMedicineComponent } from './components/delete-medicine/delete-medicine.component';
+import { UpdateMedicineComponent } from './components/update-medicine/update-medicine.component';
 
 const routes: Routes = [
 {
@@ -22,6 +23,10 @@ const routes: Routes = [
 {
   path:'delete:/id',
   component:DeleteMedicineComponent
+},
+{
+  path:'update:/id',
+  component:UpdateMedicineComponent
 }
 ]
 @NgModule({

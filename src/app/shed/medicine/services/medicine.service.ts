@@ -24,7 +24,7 @@ export class MedicineService {
   getSingleMedicine(id:number):Observable<Medicine>{
     return this.http.get<Medicine>(this.url+'/'+id);
   }
-  // editMedicine(data:Medicine){
-  //   return this.http.put()
-  // }
+  updateMedicine(data:Medicine,id:number){
+    return this.http.put(this.url+'/'+id,data)
+  }
 }

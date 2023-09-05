@@ -23,7 +23,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AddMedicineComponent } from '../add-medicine/add-medicine.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { ConfirmationComponent } from '../confirmation/confirmation.component';
 import { UpdateMedicineComponent } from '../update-medicine/update-medicine.component';
@@ -65,7 +65,8 @@ export class ShowMedicineComponent implements OnInit, AfterViewInit {
     private medicineService: MedicineService,
     public dialog: MatDialog,
     private router: Router,
-    private snackBar: SnackbarService
+    private snackBar: SnackbarService,
+    private route:ActivatedRoute
   ) {
     this.searchAll();
   }
@@ -119,11 +120,10 @@ export class ShowMedicineComponent implements OnInit, AfterViewInit {
 
 //Update Medicine Dialog
 update(id: number) {
-  this.openUpdateMedicineDialog();
+  this.openUpdateMedicineDialog(id);
 }
-openUpdateMedicineDialog(): void {
-
-  this.medicineService.getSingleMedicine(1).subscribe(res=>{
+openUpdateMedicineDialog(id:number): void {
+  this.medicineService.getSingleMedicine(id).subscribe(res=>{
     const data = res;
     let dialogRef = this.dialog.open(UpdateMedicineComponent, {
       data:data

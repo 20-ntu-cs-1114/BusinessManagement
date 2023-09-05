@@ -2,9 +2,10 @@ export interface Medicine{
   id:number,
   name:string,
   price:number,
-  company:number,
+  company:string,
   distributer:string,
   quantity:number,
+  type:string
   // id": 0,
   // "name":
   // "price": 20,
