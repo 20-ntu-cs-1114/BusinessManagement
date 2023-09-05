@@ -1,3 +1,4 @@
+<i class="bi bi-plus"></i>
 <div class="container mt-2 pb-5">
   <!-- Spinner -->
   <div *ngIf="loading == true; else elseBlock" class="spinnerContainer">
@@ -8,9 +9,19 @@
 <!-- Floating Button -->
   <ng-template #elseBlock>
     <button mat-fab color="primary" class="floating-add-button" (click)="openAddMedicineDialog()">
-      <mat-icon>add</mat-icon>
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg>
+      <!-- <mat-icon>add</mat-icon> -->
     </button>
+
+
+
 <!-- Table -->
+<div class="table-responsive">
+  <div class="table">
+
+
     <div class="col-auto table-header">
       <div class="input-group mb-2">
         <input
@@ -22,7 +33,11 @@
         />
         <div class="input-group-prepend">
           <button class="btn" (click)="searchAll()">
-            <mat-icon>clear_all</mat-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+            </svg>
+            <!-- <mat-icon>refresh</mat-icon> -->
           </button>
           <!-- <div class="input-group-text"><mat-icon>clear_all</mat-icon></div> -->
         </div>
@@ -115,6 +130,9 @@
 
       <!-- <mat-paginator [pageSizeOptions]="pagination"></mat-paginator> -->
     </div>
+  </div>
+
+</div>
     <div class="mt-2">
       <nav aria-label="Page navigation example ">
         <ul class="pagination justify-content-center">
@@ -133,5 +151,39 @@
   </ng-template>
 
 </div>
+<div class="table-responsive">
 
 
+<table class="table caption-top">
+  <caption>List of users</caption>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
