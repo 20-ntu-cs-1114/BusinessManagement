@@ -1,0 +1,37 @@
+.table-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.table-header {
+  min-height: 64px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+.floating-add-button{
+position: fixed;
+bottom: 3%;
+right: 5%;
+z-index: 2;
+// top: 0;
+}
+// .custom-container{
+//   position: relative;
+//   height: 100vh;
+
+
+// }
+.spinner{
+  position: fixed;
+  top:50%;
+  left: 50%;
+}

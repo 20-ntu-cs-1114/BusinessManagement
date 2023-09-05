@@ -1,0 +1,36 @@
+<!-- Sidebar -->
+<ng-template #content let-offcanvas>
+	<div class="offcanvas-header">
+		<h4 class="offcanvas-title">Offcanvas title</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	</div>
+	<div class="offcanvas-body">
+		<p>One fine body&hellip;</p>
+		<div class="text-end">
+			<button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Close click')">Close</button>
+		</div>
+	</div>
+</ng-template>
+<!-- Header -->
+<p>
+  <mat-toolbar >
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="openScroll(content)">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- <span>Business Management</span> -->
+    <span class="example-spacer"></span>
+    <span>Welcome, Matti</span>
+    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button> -->
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button> -->
+  </mat-toolbar>
+</p>
+
+
+
+
+

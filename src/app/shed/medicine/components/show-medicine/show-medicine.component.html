@@ -1,0 +1,136 @@
+<div class="container mt-2 pb-5">
+  <!-- Spinner -->
+  <div *ngIf="loading == true; else elseBlock" class="spinnerContainer">
+    <div class="spinner-grow text-primary spinner" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+<!-- Floating Button -->
+  <ng-template #elseBlock>
+    <button mat-fab color="primary" class="floating-add-button" (click)="openAddMedicineDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+<!-- Table -->
+    <div class="col-auto table-header">
+      <div class="input-group mb-2">
+        <input
+          mat-input
+          type="text"
+          class="form-control"
+          [formControl]="searchBar"
+          placeholder="Search Medicines"
+        />
+        <div class="input-group-prepend">
+          <button class="btn" (click)="searchAll()">
+            <mat-icon>clear_all</mat-icon>
+          </button>
+          <!-- <div class="input-group-text"><mat-icon>clear_all</mat-icon></div> -->
+        </div>
+      </div>
+    </div>
+    <!-- <div class="table-header">
+      <input
+        matInput
+        type="text"
+        (keyup)="applyFilter(filter.value)"
+        #filter
+        class="form-control"
+      />
+  </div> -->
+    <!-- <mat-form-field> -->
+    <!-- <input matInput (keyup)="applyFilter($event.target)" placeholder="Filter"> -->
+    <!-- </mat-form-field> -->
+
+    <div class="mat-elevation-z8">
+      <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            ID
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="price">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Price</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row"> {{ row.price }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="distributer">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Distributer
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.distributer }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Quantity
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.quantity }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Type
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" >
+            {{ row.type }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="update">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Update
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+           <button class="btn" (click)="update(row.id)"><mat-icon class="update-icon">update</mat-icon></button>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Delete
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+           <button class="btn" (click)="deleteMedicine(row.id)"><mat-icon class="delete-icon">delete</mat-icon></button>
+           <!-- <a routerLink="/medicine/delete/{{row.id}}" class="btn"><mat-icon class="delete-icon">delete</mat-icon></a> -->
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+      </mat-table>
+
+      <!-- <mat-paginator [pageSizeOptions]="pagination"></mat-paginator> -->
+    </div>
+    <div class="mt-2">
+      <nav aria-label="Page navigation example ">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </ng-template>
+
+</div>
+
+

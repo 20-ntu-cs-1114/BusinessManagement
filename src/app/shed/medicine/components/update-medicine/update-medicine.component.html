@@ -1,0 +1,58 @@
+<div class="m-3">
+  <h3 class="text-center">Update Medicine</h3>
+  <hr>
+  <form [formGroup]="updateMedicineForm" (submit)="updateMedicine(updateMedicineForm.value)" class="add-medicine-form">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Name" formControlName="name" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Company"  formControlName="company" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input type="number" matInput placeholder="Price"  formControlName="price" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+
+      <input type="text"
+             placeholder="Pick Distributer"
+             matInput
+             formControlName="distributer"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of medDistributersList | async" [value]="option.name">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+
+    <!-- <mat-radio-group class="type-group">
+      <mat-radio-button class="type-button">Kg
+      </mat-radio-button>
+      <mat-radio-button class="type-button">Litter
+      </mat-radio-button>
+    </mat-radio-group> -->
+
+    <mat-form-field class="full-width">
+      <input type="number" matInput placeholder="Quantity"  formControlName="quantity" autocomplete="off">
+    </mat-form-field>
+
+    <mat-radio-group class="type-group" formControlName="type">
+      <mat-radio-button class="type-button" *ngFor="let type of types" [value]="type">
+        {{type}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+
+    <div class="row justify-content-center mt-2">
+      <button mat-raised-button type="submit" [disabled]="updateMedicineForm.invalid" >Update</button>
+    </div>
+
+
+  </form>
+
+</div>
+
