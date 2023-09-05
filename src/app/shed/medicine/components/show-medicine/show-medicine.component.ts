@@ -17,6 +17,7 @@ import {
   distinctUntilChanged,
   filter,
   fromEvent,
+  retry,
   switchMap,
   tap,
 } from 'rxjs';
@@ -52,13 +53,13 @@ export class ShowMedicineComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-
   @ViewChild(MatSort)
   sort!: MatSort;
 
   // @ViewChild('searchBar')
   // searchBar!: ElementRef;
   loading = true;
+  error = false;
   searchBar = new FormControl('', [Validators.required]);
 
   constructor(
@@ -71,6 +72,7 @@ export class ShowMedicineComponent implements OnInit, AfterViewInit {
     this.searchAll();
   }
   ngOnInit(): void {
+    console.log("Show")
     this.searchBar.valueChanges
       .pipe(
         debounceTime(500),
@@ -99,22 +101,24 @@ export class ShowMedicineComponent implements OnInit, AfterViewInit {
   searchAll() {
     this.medicineService
       .getMedicines()
-      .pipe(tap(() => (this.loading = true)))
+
+      .pipe(
+        retry(3),
+        tap(() => (this.loading = true)))
       .subscribe((res) => {
         this.dataSource.data = res;
         this.loading = false;
-      });
+      },err=>{
+        this.loading = false;
+        this.error = true;
+        this.snackBar.openSnackBar("Something went wrong! Try Again")
+      },()=>{this.loading = false});
   }
 
 
   // Add Medicine Dialog
   openAddMedicineDialog(): void {
     let dialogRef = this.dialog.open(AddMedicineComponent, {});
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
-      // console.log('The dialog was closed');
-    });
   }
 
 
@@ -127,10 +131,6 @@ openUpdateMedicineDialog(id:number): void {
     const data = res;
     let dialogRef = this.dialog.open(UpdateMedicineComponent, {
       data:data
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
-      // console.log('The dialog was closed');
     });
   })
 }
